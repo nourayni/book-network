@@ -33,3 +33,4 @@ build/
 .vscode/
 ### ignore application.yml
 src/main/resources/*.yml
+docker-compose.yml
