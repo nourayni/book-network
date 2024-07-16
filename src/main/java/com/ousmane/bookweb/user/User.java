@@ -9,6 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.ousmane.bookweb.role.Role;
@@ -27,6 +28,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter @Setter @Builder
 @Entity  
@@ -59,8 +61,8 @@ public class User implements UserDetails, Principal{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+        return this.roles.stream()
+        .map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
     }
 
     @Override
