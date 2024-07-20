@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.function.Function;
 
-import org.springframework.beans.factory.annotation.Value;
+// import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class JwtService {
 
     // Extrait les claims d'un token JWT en utilisant une fonction de résolution de claims
     private <T> T extractClaims(String token, Function<Claims, T> claimResolver) {
-        Claims claims = extractAllClaims(token);
+        Claims claims = extractAllClaims(token);        
         return claimResolver.apply(claims);
     }
 
